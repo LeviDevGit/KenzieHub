@@ -1,0 +1,139 @@
+@use "../../styles/abstracts" as *;
+
+.container {
+  background-color: $grey-4;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.interface {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.interface_header {
+  border: 1px solid pink;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h1 {
+    color: $color-primary;
+
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  button {
+    color: $grey-0;
+
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    background-color: $grey-3;
+    border: none;
+    border-radius: 4px;
+
+    padding: 12px;
+
+    cursor: pointer;
+  }
+}
+
+.interface_body {
+  border: 1px solid pink;
+
+  background-color: $grey-3;
+  border-radius: 4px;
+
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.interface_body_summary {
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  h2 {
+    color: $grey-0;
+
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+  p {
+    color: $grey-1;
+
+    font-size: 0.75rem;
+    font-weight: 400;
+  }
+}
+
+.interface_body_form {
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    margin-bottom: 20px;
+
+    label {
+      color: $grey-0;
+
+      font-size: 0.8rem;
+      font-weight: 400;
+    }
+    input,
+    select {
+      color: $grey-1;
+
+      font-size: 1rem;
+      font-weight: 400;
+
+      background-color: $grey-2;
+      border: 1px solid $grey-2;
+      border-radius: 4px;
+
+      outline: none;
+
+      width: 300px;
+      padding: 10px;
+    }
+    input:focus {
+      color: $grey-0;
+
+      border: 1px solid $grey-0;
+    }
+    select {
+      cursor: pointer;
+
+      width: 100%;
+    }
+  }
+  button {
+    color: #ffffff;
+
+    font-size: 0.95rem;
+    font-weight: 500;
+
+    background-color: $color-primary-negative;
+    border: 1px solid $color-primary-negative;
+    border-radius: 4px;
+
+    width: 100%;
+    padding: 10px 0;
+
+    cursor: pointer;
+  }
+}
