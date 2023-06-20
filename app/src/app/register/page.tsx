@@ -1,4 +1,6 @@
+import Link from "next/link";
 import styles from "./styles.module.scss";
+import Input from "@/components/Input";
 
 export default function Register() {
   return (
@@ -6,7 +8,9 @@ export default function Register() {
       <div className={styles.interface}>
         <header className={styles.interface_header}>
           <h1>Kenzie Hub</h1>
-          <button>Voltar</button>
+          <Link href="/login">
+            <button>Voltar</button>
+          </Link>
         </header>
         <div className={styles.interface_body}>
           <div className={styles.interface_body_summary}>
@@ -15,10 +19,32 @@ export default function Register() {
           </div>
           <div className={styles.interface_body_form}>
             <form action="">
-              <div>
-                <label htmlFor="">Nome</label>
-                <input type="text" placeholder="Digite aqui seu email" />
-              </div>
+              <Input
+                label="Nome"
+                type="text"
+                placeholder="Digite aqui seu nome"
+              />
+              <Input
+                label="Email"
+                type="email"
+                placeholder="Digite aqui seu email"
+              />
+              <Input
+                label="Senha"
+                type="password"
+                placeholder="Digite aqui sua senha"
+              />
+              <Input
+                label="Confirmar Senha"
+                type="password"
+                placeholder="Digite novamente sua senha"
+              />
+              <Input label="Bio" type="text" placeholder="Fale sobre você" />
+              <Input
+                label="Contato"
+                type="text"
+                placeholder="Opção de contato"
+              />
               <div>
                 <label htmlFor="">Selecionar módulo</label>
                 <select name="" id="">
