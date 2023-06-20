@@ -1,6 +1,6 @@
 import Link from "next/link";
-import styles from "./styles.module.scss";
 import Input from "@/components/Input";
+import styles from "./styles.module.scss";
 
 export default function Register() {
   return (
