@@ -1,8 +1,42 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+import { Root, fetchApi } from "@/services/api";
+
 import styles from "./styles.module.scss";
+import ModalCreate from "@/components/Modal/ModalCreate";
 
 export default function Home() {
+  const [create, setCreate] = useState<boolean>(false);
+  const [content, setContent] = useState<Root | undefined>();
+
+  useEffect(() => {
+    const handleSubmit = async () => {
+      try {
+        const autoLogin = {
+          email: "gabriel@kenzie.com.br",
+          password: "123456",
+        };
+
+        const data = await fetchApi<Root>("sessions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(autoLogin),
+        });
+        setContent(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    handleSubmit();
+  }, []);
+
   return (
     <main className={styles.container}>
+      {create ? <ModalCreate setCreate={setCreate} /> : null}
       <header className={styles.header}>
         <nav className={styles.header_navigator}>
           <div>
@@ -20,21 +54,26 @@ export default function Home() {
       <div className={styles.body}>
         <div className={styles.body_summary}>
           <h2>Tecnologias</h2>
-          <button>+</button>
+          <button
+            type="button"
+            onClick={() => {
+              setCreate(true);
+            }}
+          >
+            +
+          </button>
         </div>
         <div className={styles.body_dashboard}>
-          <button>
-            <div>
-              <h3>React JS</h3>
-              <span>Intermediário</span>
-            </div>
-          </button>
-          <button>
-            <div>
-              <h3>Next JS</h3>
-              <span>Iniciante</span>
-            </div>
-          </button>
+          {content
+            ? content.user.techs.map((tech) => (
+                <button key={tech.id}>
+                  <div>
+                    <h3>{tech.title}</h3>
+                    <span>{tech.status}</span>
+                  </div>
+                </button>
+              ))
+            : null}
         </div>
       </div>
     </main>
