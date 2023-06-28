@@ -53,6 +53,27 @@
   padding: 19px 15px;
 
   border-radius: 0 0 4px 4px;
+  input {
+    color: $grey-1;
+
+    font-size: 1rem;
+    font-weight: 400;
+
+    background-color: $grey-2;
+    border: 1px solid $grey-2;
+    border-radius: 4px;
+
+    outline: none;
+
+    width: 300px;
+    padding: 10px;
+  }
+  input:focus {
+    color: $grey-0;
+
+    border: 1px solid $grey-0;
+  }
+
   div {
     display: flex;
     flex-direction: column;
@@ -98,7 +119,15 @@
 
     width: 100%;
     padding: 10px 0;
+    &[data-filled="true"] {
+      background-color: $color-primary;
+      border: 1px solid $color-primary;
 
-    // cursor: pointer;
+      cursor: pointer;
+    }
+    &[data-filled="true"]:hover {
+      background-color: $color-primary-focus;
+      border: 1px solid $color-primary-focus;
+    }
   }
 }

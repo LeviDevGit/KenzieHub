@@ -26,13 +26,14 @@ export default function Home() {
           },
           body: JSON.stringify(autoLogin),
         });
+        localStorage.setItem("token", data.token);
         setContent(data);
       } catch (error) {
         console.error(error);
       }
     };
     handleSubmit();
-  }, []);
+  });
 
   return (
     <main className={styles.container}>
