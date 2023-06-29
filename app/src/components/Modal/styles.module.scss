@@ -53,6 +53,8 @@
   padding: 19px 15px;
 
   border-radius: 0 0 4px 4px;
+
+  width: 300px;
   input {
     color: $grey-1;
 
@@ -65,8 +67,8 @@
 
     outline: none;
 
-    width: 300px;
     padding: 10px;
+    max-width: 100%;
   }
   input:focus {
     color: $grey-0;
@@ -80,6 +82,8 @@
     gap: 12px;
 
     margin-bottom: 20px;
+
+    width: 100%;
     label {
       color: $grey-0;
 
@@ -91,6 +95,7 @@
 
       font-size: 1rem;
       font-weight: 400;
+      text-overflow: ellipsis;
 
       background-color: $grey-2;
       border: 1px solid $grey-2;
@@ -134,6 +139,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    margin: 0;
   }
 
   .interface_footer_saveButton {

@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useState } from "react";
+import { toast } from "react-toastify";
 
 import styles from "../styles.module.scss";
 import { fetchApi } from "@/services/api";
@@ -28,11 +29,11 @@ export default function ModalCreate({ setCreate }: IModalCreateProps) {
         },
         body: JSON.stringify(content),
       });
-      console.log(data);
+      toast.success("Tecnologia criada com sucesso!");
     } catch (error) {
+      toast.error("Ops! Algo deu errado");
       console.error(error);
     }
-    console.log(name, module);
   };
 
   return (
@@ -85,7 +86,10 @@ export default function ModalCreate({ setCreate }: IModalCreateProps) {
           <button
             data-filled={inputText ? "true" : undefined}
             onClick={() => {
-              handleSubmit(inputText, selectText);
+              if (inputText) {
+                handleSubmit(inputText, selectText);
+                setCreate(false);
+              }
             }}
           >
             Cadastrar Tecnologia

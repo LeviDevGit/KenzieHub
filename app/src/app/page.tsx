@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import { Root, fetchApi } from "@/services/api";
-
 import styles from "./styles.module.scss";
 import ModalCreate from "@/components/Modal/ModalCreate";
 import ModalEdit from "@/components/Modal/ModalEdit";
@@ -51,8 +49,8 @@ export default function Home() {
         </nav>
         <div className={styles.header_info}>
           <div>
-            <h1>Olá, Samuel Leão</h1>
-            <p>Primeiro módulo (Introdução ao Frontend)</p>
+            <h1>{content?.user.name}</h1>
+            <p>{content?.user.course_module}</p>
           </div>
         </div>
       </header>

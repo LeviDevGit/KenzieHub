@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import styles from "../styles.module.scss";
+import { toast } from "react-toastify";
 import { fetchApi } from "@/services/api";
+import styles from "../styles.module.scss";
 
 interface IModalEditProps {
   setEdit: Dispatch<SetStateAction<boolean>>;
@@ -9,6 +10,15 @@ interface IModalEditProps {
     module: string;
     id: string;
   };
+}
+
+interface ApiResponse<T> {
+  status: number;
+  data: T;
+}
+
+interface ErrorData {
+  message: string;
 }
 
 export default function ModalEdit({ setEdit, initialInfo }: IModalEditProps) {
@@ -28,11 +38,11 @@ export default function ModalEdit({ setEdit, initialInfo }: IModalEditProps) {
         },
         body: JSON.stringify(content),
       });
-      console.log(data);
+      toast.success("Tecnologia editada com sucesso!");
     } catch (error) {
+      toast.error("Ops! Algo deu errado");
       console.error(error);
     }
-    console.log(module);
   };
 
   const handleDelete = async () => {
@@ -45,9 +55,10 @@ export default function ModalEdit({ setEdit, initialInfo }: IModalEditProps) {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(data);
     } catch (error) {
       console.error(error);
+    } finally {
+      toast.success("Tecnologia deletada com sucesso!");
     }
   };
 
@@ -100,6 +111,7 @@ export default function ModalEdit({ setEdit, initialInfo }: IModalEditProps) {
               className={styles.interface_footer_saveButton}
               onClick={() => {
                 handleSubmit(selectText);
+                setEdit(false);
               }}
             >
               Salvar alterações
@@ -108,6 +120,7 @@ export default function ModalEdit({ setEdit, initialInfo }: IModalEditProps) {
               className={styles.interface_footer_deleteButton}
               onClick={() => {
                 handleDelete();
+                setEdit(false);
               }}
             >
               Excluir
