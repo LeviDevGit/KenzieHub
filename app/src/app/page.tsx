@@ -6,9 +6,12 @@ import { Root, fetchApi } from "@/services/api";
 
 import styles from "./styles.module.scss";
 import ModalCreate from "@/components/Modal/ModalCreate";
+import ModalEdit from "@/components/Modal/ModalEdit";
 
 export default function Home() {
   const [create, setCreate] = useState<boolean>(false);
+  const [edit, setEdit] = useState<boolean>(false);
+  const [editInfo, setEditInfo] = useState({ name: "", module: "", id: "" });
   const [content, setContent] = useState<Root | undefined>();
 
   useEffect(() => {
@@ -38,6 +41,7 @@ export default function Home() {
   return (
     <main className={styles.container}>
       {create ? <ModalCreate setCreate={setCreate} /> : null}
+      {edit ? <ModalEdit setEdit={setEdit} initialInfo={editInfo} /> : null}
       <header className={styles.header}>
         <nav className={styles.header_navigator}>
           <div>
@@ -67,7 +71,17 @@ export default function Home() {
         <div className={styles.body_dashboard}>
           {content
             ? content.user.techs.map((tech) => (
-                <button key={tech.id}>
+                <button
+                  key={tech.id}
+                  onClick={() => {
+                    setEditInfo({
+                      name: tech.title,
+                      module: tech.status,
+                      id: tech.id,
+                    });
+                    setEdit(true);
+                  }}
+                >
                   <div>
                     <h3>{tech.title}</h3>
                     <span>{tech.status}</span>
