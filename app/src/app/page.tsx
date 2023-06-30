@@ -1,33 +1,33 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Root, fetchApi } from "@/services/api";
+import { User, fetchApi } from "@/services/api";
 import styles from "./styles.module.scss";
 import ModalCreate from "@/components/Modal/ModalCreate";
 import ModalEdit from "@/components/Modal/ModalEdit";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+
   const [create, setCreate] = useState<boolean>(false);
   const [edit, setEdit] = useState<boolean>(false);
   const [editInfo, setEditInfo] = useState({ name: "", module: "", id: "" });
-  const [content, setContent] = useState<Root | undefined>();
+  const [content, setContent] = useState<User | undefined>();
 
   useEffect(() => {
     const handleSubmit = async () => {
       try {
-        const autoLogin = {
-          email: "gabriel@kenzie.com.br",
-          password: "123456",
-        };
-
-        const data = await fetchApi<Root>("sessions", {
-          method: "POST",
+        const userId = localStorage.getItem("userId");
+        if (!userId) {
+          router.push("/login");
+        }
+        const data = await fetchApi<User>(`users/${userId}`, {
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(autoLogin),
         });
-        localStorage.setItem("token", data.token);
         setContent(data);
       } catch (error) {
         console.error(error);
@@ -44,13 +44,20 @@ export default function Home() {
         <nav className={styles.header_navigator}>
           <div>
             <h1>Kenzie Hub</h1>
-            <button>Sair</button>
+            <button
+              onClick={() => {
+                localStorage.clear();
+                router.push("/login");
+              }}
+            >
+              Sair
+            </button>
           </div>
         </nav>
         <div className={styles.header_info}>
           <div>
-            <h1>{content?.user.name}</h1>
-            <p>{content?.user.course_module}</p>
+            <h1>{content?.name}</h1>
+            <p>{content?.course_module}</p>
           </div>
         </div>
       </header>
@@ -68,7 +75,7 @@ export default function Home() {
         </div>
         <div className={styles.body_dashboard}>
           {content
-            ? content.user.techs.map((tech) => (
+            ? content.techs.map((tech) => (
                 <button
                   key={tech.id}
                   onClick={() => {

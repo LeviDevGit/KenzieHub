@@ -4,11 +4,17 @@ import Input from "@/components/Input";
 import styles from "./styles.module.scss";
 import Link from "next/link";
 import { useForm, Controller } from "react-hook-form";
-import { fetchApi } from "@/services/api";
+import { User, fetchApi } from "@/services/api";
+import { useRouter } from "next/navigation";
 
 interface IInputProps {
   email: string;
   password: string;
+}
+
+interface IResponse {
+  token: string;
+  user: User;
 }
 
 export default function Login() {
@@ -18,20 +24,23 @@ export default function Login() {
     control,
     formState: { errors },
   } = useForm<IInputProps>();
+  const router = useRouter();
+
   const onSubmit = async (data: IInputProps) => {
     try {
-      const response = await fetchApi("sessions", {
+      const response: IResponse = await fetchApi("sessions", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
-      console.log(response);
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("userId", response.user.id);
+      router.push("/");
     } catch (error) {
       console.log(error);
     }
-    console.log(data);
   };
   return (
     <main className={styles.container}>
