@@ -38,8 +38,41 @@ export default function Login() {
       localStorage.setItem("token", response.token);
       localStorage.setItem("userId", response.user.id);
       router.push("/");
+    } catch (error) {}
+  };
+
+  const onSubmitDemo = async () => {
+    try {
+      const response: IResponse = await fetchApi("sessions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: "demo@mail.com",
+          password: "senha123demo",
+        }),
+      });
+
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("userId", response.user.id);
+      router.push("/");
     } catch (error) {
-      console.log(error);
+      const response = await fetchApi("users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          bio: "Demo",
+          confirmPassword: "senha123demo",
+          contact: "Contato Demo",
+          course_module: "Primeiro módulo (Introdução ao Frontend)",
+          email: "demo@mail.com",
+          name: "Conta Demo",
+          password: "senha123demo",
+        }),
+      });
     }
   };
   return (
@@ -88,11 +121,16 @@ export default function Login() {
             </form>
           </div>
           <footer className={styles.interface_footer}>
-            <p>Ainda não possui uma conta?</p>
-            <Link href="/register">
-              <button>Cadastre-se</button>
-            </Link>
+            <p>
+              Ainda não possui uma conta?{" "}
+              <Link href="/register">
+                <button>Cadastre-se</button>
+              </Link>
+            </p>
           </footer>
+          <div className={styles.interface_demo}>
+            <button onClick={onSubmitDemo}>Demo Novo Usuário</button>
+          </div>
         </div>
       </div>
     </main>

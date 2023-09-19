@@ -30,7 +30,7 @@ export default function Home() {
         });
         setContent(data);
       } catch (error) {
-        console.error(error);
+        router.push("/login");
       }
     };
     handleSubmit();

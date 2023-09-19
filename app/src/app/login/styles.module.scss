@@ -27,7 +27,7 @@
     color: $color-primary;
 
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: bold;
   }
 }
 
@@ -55,7 +55,7 @@
     color: $grey-0;
 
     font-size: 1.2rem;
-    font-weight: 700;
+    font-weight: bold;
   }
 }
 
@@ -70,14 +70,14 @@
       color: $grey-0;
 
       font-size: 0.8rem;
-      font-weight: 400;
+      font-weight: normal;
     }
   }
   button {
     color: #ffffff;
 
     font-size: 0.95rem;
-    font-weight: 500;
+    font-weight: normal;
 
     background-color: $color-primary-negative;
     border: 1px solid $color-primary-negative;
@@ -99,14 +99,26 @@
     color: $grey-1;
 
     font-size: 0.75rem;
-    font-weight: 400;
+    font-weight: normal;
     text-align: center;
   }
+
+  button {
+    background-color: transparent;
+    color: $grey-0;
+
+    text-decoration: underline;
+
+    cursor: pointer;
+  }
+}
+
+.interface_demo {
   button {
     color: $grey-0;
 
     font-size: 0.95rem;
-    font-weight: 500;
+    font-weight: normal;
 
     background-color: $grey-1;
     border: 1px solid $grey-1;

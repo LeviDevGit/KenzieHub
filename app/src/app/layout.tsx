@@ -4,7 +4,11 @@ import { ToastContainer } from "react-toastify";
 import "@/styles/main.scss";
 import "react-toastify/dist/ReactToastify.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  weight: ["400", "700"],
+  style: ["normal"],
+  subsets: ["latin"],
+});
 
 export const metadata = {
   title: "Kenzie Hub",

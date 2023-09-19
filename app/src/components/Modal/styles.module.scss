@@ -1,8 +1,12 @@
 @use "../../styles/abstracts/" as *;
 
 .container {
-  width: 100%;
-  height: 100%;
+  margin: 0;
+  border: 0;
+  padding: 0;
+
+  width: 100vw;
+  height: 100vh;
 
   background-color: rgba(18, 18, 20, 0.7);
 
@@ -29,13 +33,13 @@
     color: $grey-0;
 
     font-size: 0.95rem;
-    font-weight: 700;
+    font-weight: bold;
   }
   button {
     color: $grey-1;
 
     font-size: 0.8rem;
-    font-weight: 600;
+    font-weight: bold;
 
     background-color: transparent;
     border: none;
@@ -59,7 +63,7 @@
     color: $grey-1;
 
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: normal;
 
     background-color: $grey-2;
     border: 1px solid $grey-2;
@@ -88,13 +92,13 @@
       color: $grey-0;
 
       font-size: 0.8rem;
-      font-weight: 400;
+      font-weight: normal;
     }
     select {
       color: $grey-1;
 
       font-size: 1rem;
-      font-weight: 400;
+      font-weight: normal;
       text-overflow: ellipsis;
 
       background-color: $grey-2;
@@ -116,7 +120,7 @@
     color: #ffffff;
 
     font-size: 0.95rem;
-    font-weight: 500;
+    font-weight: normal;
 
     background-color: $color-primary-negative;
     border: 1px solid $color-primary-negative;

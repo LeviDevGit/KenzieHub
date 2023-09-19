@@ -34,10 +34,7 @@ export default function Register() {
         },
         body: JSON.stringify(data),
       });
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   return (
@@ -149,10 +146,7 @@ export default function Register() {
               <div>
                 <label htmlFor="">Selecionar módulo</label>
                 <select id="" {...register("course_module")}>
-                  <option
-                    value="Primeiro módulo (Introdução ao Frontend)"
-                    selected
-                  >
+                  <option value="Primeiro módulo (Introdução ao Frontend)">
                     Primeiro módulo
                   </option>
                   <option value="Segundo módulo (Frontend Avançado)">
